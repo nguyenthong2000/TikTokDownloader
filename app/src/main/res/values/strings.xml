@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TikTok Downloader</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="myfile">MyFile</string>
+    <string name="trending">Trending</string>
+    <string name="explore">Explore</string>
+    <string name="input_text">Please paste link here</string>
+    <string name="paste">Paste</string>
+    <string name="download_video">Download Video</string>
+    <string name="download_video_no_watermark">Download Video (No-Watermark)</string>
+    <string name="download_audio">Download Audio</string>
+    <string name="download_thumbnail_jpg">Download Thumbnail (JPG)</string>
+
+</resources>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.HomeFragment"
+    android:background="@color/background_color">
+
+
+
+    <EditText
+        android:id="@+id/ed_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="120dp"
+        android:background="@drawable/layout_ed"
+        android:backgroundTint="@color/white"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:hint="@string/input_text"
+        app:layout_constraintEnd_toStartOf="@+id/btn_paste"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_paste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/layout_ed"
+        android:backgroundTint="@color/black"
+        android:text="@string/paste"
+        android:fontFamily="@font/fonts_proxima_nova"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="#EA4359"
+
+        app:layout_constraintBottom_toTopOf="@+id/btn_download"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_input" />
+
+    <Button
+        android:id="@+id/btn_download"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/layout_btn"
+        android:text="@string/download_video"
+        android:textStyle="bold"
+        android:fontFamily="@font/fonts_proxima_nova"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_paste" />
+
+    <ImageView
+        android:id="@+id/video_img"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_download" />
+
+    <TextView
+        android:id="@+id/video_name"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="26dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/video_img"
+        app:layout_constraintTop_toBottomOf="@+id/btn_download" />
+
+    <TextView
+        android:id="@+id/author_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/video_img"
+        app:layout_constraintTop_toBottomOf="@+id/video_name" />
+
+    <Button
+        android:id="@+id/btn_download_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="29dp"
+        android:text="@string/download_video_no_watermark"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/fonts_proxima_nova"
+        android:textStyle="bold"
+        android:background="@drawable/layout_btn"
+        android:backgroundTint="@color/secondary_blue"
+        android:drawableStart="@drawable/ic_video_camera_line"
+        android:paddingStart="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/video_img"
+        tools:ignore="RtlSymmetry" />
+
+    <Button
+        android:id="@+id/btn_download_audio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="33dp"
+        android:background="@drawable/layout_btn_border"
+        android:text="@string/download_audio"
+        android:textStyle="bold"
+        android:fontFamily="@font/fonts_proxima_nova"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:drawableStart="@drawable/ic_music_note_line"
+        android:paddingStart="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_download_video"
+        tools:ignore="RtlSymmetry" />
+
+    <Button
+        android:id="@+id/btn_download_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="33dp"
+        android:background="@drawable/layout_btn_border"
+        android:drawableStart="@drawable/ic_camera_line"
+        android:fontFamily="@font/fonts_proxima_nova"
+        android:paddingStart="30dp"
+        android:text="@string/download_thumbnail_jpg"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_download_audio"
+        tools:ignore="RtlSymmetry" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
