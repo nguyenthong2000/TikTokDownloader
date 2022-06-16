@@ -68,35 +68,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_paste" />
 
-    <ImageView
-        android:id="@+id/video_img"
-        android:layout_width="60dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_download" />
-
     <TextView
-        android:id="@+id/video_name"
+        android:id="@+id/tv_video_name"
         android:layout_width="153dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="26dp"
+        android:fontFamily="@font/fonts_proxima_nova"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/video_img"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/videoView"
         app:layout_constraintTop_toBottomOf="@+id/btn_download" />
 
     <TextView
-        android:id="@+id/author_name"
+        android:id="@+id/tv_author_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/fonts_proxima_nova"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/video_img"
-        app:layout_constraintTop_toBottomOf="@+id/video_name" />
+        android:textColor="@color/grey_darker"
+        android:textSize="11sp"
+        app:layout_constraintStart_toEndOf="@+id/videoView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_video_name" />
 
     <Button
         android:id="@+id/btn_download_video"
@@ -105,18 +102,18 @@
         android:layout_marginStart="29dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="29dp"
-        android:text="@string/download_video_no_watermark"
-        android:textSize="14sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/fonts_proxima_nova"
-        android:textStyle="bold"
         android:background="@drawable/layout_btn"
         android:backgroundTint="@color/secondary_blue"
         android:drawableStart="@drawable/ic_video_camera_line"
+        android:fontFamily="@font/fonts_proxima_nova"
         android:paddingStart="34dp"
+        android:text="@string/download_video_no_watermark"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/video_img"
+        app:layout_constraintTop_toBottomOf="@+id/videoView"
         tools:ignore="RtlSymmetry" />
 
     <Button
@@ -159,6 +156,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_download_audio"
         tools:ignore="RtlSymmetry" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_download" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

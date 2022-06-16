@@ -12,5 +12,6 @@
     <string name="download_video_no_watermark">Download Video (No-Watermark)</string>
     <string name="download_audio">Download Audio</string>
     <string name="download_thumbnail_jpg">Download Thumbnail (JPG)</string>
+    <string name="search_anythings_you_want">Search anythings you want</string>
 
 </resources>
