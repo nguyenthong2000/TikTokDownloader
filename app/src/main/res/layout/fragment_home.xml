@@ -79,7 +79,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/videoView"
+        app:layout_constraintStart_toEndOf="@+id/thumbnail"
         app:layout_constraintTop_toBottomOf="@+id/btn_download" />
 
     <TextView
@@ -92,7 +92,7 @@
         android:text="TextView"
         android:textColor="@color/grey_darker"
         android:textSize="11sp"
-        app:layout_constraintStart_toEndOf="@+id/videoView"
+        app:layout_constraintStart_toEndOf="@+id/thumbnail"
         app:layout_constraintTop_toBottomOf="@+id/tv_video_name" />
 
     <Button
@@ -113,7 +113,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintTop_toBottomOf="@+id/thumbnail"
         tools:ignore="RtlSymmetry" />
 
     <Button
@@ -157,13 +157,13 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_download_audio"
         tools:ignore="RtlSymmetry" />
 
-    <VideoView
-        android:id="@+id/videoView"
+    <ImageView
+        android:id="@+id/thumbnail"
         android:layout_width="60dp"
         android:layout_height="80dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="16dp"
-        android:visibility="invisible"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_download" />
 
