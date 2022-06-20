@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.tiktokdownloader.Model.VideoModel
+import com.example.tiktokdownloader.models.VideoModel
 
 @Dao
 interface VideoDAO {
@@ -16,4 +16,5 @@ interface VideoDAO {
 
     @Query("SELECT * FROM videomodel")
     fun selectAll():List<VideoModel>
+
 }

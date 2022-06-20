@@ -13,5 +13,8 @@
     <string name="download_audio">Download Audio</string>
     <string name="download_thumbnail_jpg">Download Thumbnail (JPG)</string>
     <string name="search_anythings_you_want">Search anythings you want</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
 
 </resources>

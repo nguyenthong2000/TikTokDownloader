@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:paddingStart="20dp"
+    android:background="@drawable/layout_btn"
+    android:backgroundTint="@color/white"
+    android:id="@+id/bottom_options_bar"
+    android:paddingEnd="20dp">
+
+
+    <View
+        android:id="@+id/btnCancel"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toRightOf="@+id/btnDelete"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ImageView
+        android:id="@+id/imgCancel"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/txtCancel"
+        app:layout_constraintLeft_toLeftOf="@+id/btnCancel"
+        app:layout_constraintRight_toRightOf="@+id/btnCancel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+
+    <TextView
+        android:id="@+id/txtCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+        app:layout_constraintLeft_toLeftOf="@+id/btnCancel"
+        app:layout_constraintRight_toRightOf="@+id/btnCancel"
+        app:layout_constraintTop_toBottomOf="@+id/imgCancel" />
+
+
+    <View
+        android:id="@+id/btnRePost"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btnShare" />
+
+    <ImageView
+        android:id="@+id/imgRePost"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/txtRepost"
+        app:layout_constraintLeft_toLeftOf="@+id/btnRePost"
+        app:layout_constraintRight_toRightOf="@+id/btnRePost"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/txtRepost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Repost"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+        app:layout_constraintLeft_toLeftOf="@+id/imgRePost"
+        app:layout_constraintRight_toRightOf="@+id/imgRePost"
+        app:layout_constraintTop_toBottomOf="@+id/imgRePost" />
+
+    <View
+        android:id="@+id/btnShare"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toRightOf="@+id/btnRePost"
+        app:layout_constraintRight_toLeftOf="@+id/btnDelete" />
+
+    <ImageView
+        android:id="@+id/imgShare"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/txtShare"
+        app:layout_constraintLeft_toLeftOf="@+id/btnShare"
+        app:layout_constraintRight_toRightOf="@+id/btnShare"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/txtShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+        app:layout_constraintLeft_toLeftOf="@+id/imgShare"
+        app:layout_constraintRight_toRightOf="@+id/imgShare"
+        app:layout_constraintTop_toBottomOf="@+id/imgShare" />
+
+    <View
+        android:id="@+id/btnDelete"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintLeft_toRightOf="@+id/btnShare"
+        app:layout_constraintRight_toLeftOf="@+id/btnCancel" />
+
+    <ImageView
+        android:id="@+id/imgDelete"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/txtDelete"
+        app:layout_constraintLeft_toLeftOf="@+id/btnDelete"
+        app:layout_constraintRight_toRightOf="@+id/btnDelete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/txtDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnCancel"
+        app:layout_constraintLeft_toLeftOf="@+id/imgDelete"
+        app:layout_constraintRight_toRightOf="@+id/imgDelete"
+        app:layout_constraintTop_toBottomOf="@+id/imgDelete" />
+</androidx.constraintlayout.widget.ConstraintLayout>

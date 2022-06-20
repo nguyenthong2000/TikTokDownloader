@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.HomeFragment"
+    tools:context=".ui.fragments.HomeFragment"
     android:background="@color/background_color">
 
 
@@ -20,6 +20,7 @@
         android:backgroundTint="@color/white"
         android:paddingLeft="16dp"
         android:textSize="14sp"
+
         android:hint="@string/input_text"
         app:layout_constraintEnd_toStartOf="@+id/btn_paste"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +77,7 @@
         android:layout_marginTop="26dp"
         android:fontFamily="@font/fonts_proxima_nova"
         android:text="TextView"
+        android:visibility="invisible"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
@@ -90,6 +92,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/fonts_proxima_nova"
         android:text="TextView"
+        android:visibility="invisible"
         android:textColor="@color/grey_darker"
         android:textSize="11sp"
         app:layout_constraintStart_toEndOf="@+id/thumbnail"
@@ -107,6 +110,7 @@
         android:drawableStart="@drawable/ic_video_camera_line"
         android:fontFamily="@font/fonts_proxima_nova"
         android:paddingStart="34dp"
+        android:visibility="invisible"
         android:text="@string/download_video_no_watermark"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -125,6 +129,7 @@
         android:layout_marginEnd="33dp"
         android:background="@drawable/layout_btn_border"
         android:text="@string/download_audio"
+        android:visibility="invisible"
         android:textStyle="bold"
         android:fontFamily="@font/fonts_proxima_nova"
         android:textSize="14sp"
@@ -151,6 +156,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,6 +169,7 @@
         android:layout_height="80dp"
         android:layout_marginStart="67dp"
         android:layout_marginTop="16dp"
+        android:visibility="invisible"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_download" />

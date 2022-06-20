@@ -9,7 +9,7 @@
 
 
     <VideoView
-        android:id="@+id/videoView2"
+        android:id="@+id/imageViewThumb"
 
         android:layout_width="84dp"
         android:layout_height="110dp"
@@ -25,7 +25,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/videoView2"
+        app:layout_constraintStart_toEndOf="@+id/imageViewThumb"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/videoView2"
+        app:layout_constraintStart_toEndOf="@+id/imageViewThumb"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/videoView2"
+        app:layout_constraintStart_toEndOf="@+id/imageViewThumb"
         app:layout_constraintTop_toBottomOf="@+id/tv_author" />
 
     <TextView
@@ -55,7 +55,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="2dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/videoView2"
+        app:layout_constraintStart_toEndOf="@+id/imageViewThumb"
         app:layout_constraintTop_toBottomOf="@+id/tv_filename" />
 
     <ImageView

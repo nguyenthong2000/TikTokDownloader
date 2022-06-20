@@ -1,7 +1,6 @@
 package com.example.tiktokdownloader.api
 
-import com.example.tiktokdownloader.Model.DownloadAddr
-import com.example.tiktokdownloader.Model.TikTokModel
+import com.example.tiktokdownloader.models.TikTokModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
