@@ -1,17 +1,14 @@
 package com.example.tiktokdownloader
 
-import android.app.DownloadManager
-import android.content.BroadcastReceiver
-import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.example.tiktokdownloader.adapter.ViewPageAdapter
-import com.example.tiktokdownloader.fragment.ExploreFragment
-import com.example.tiktokdownloader.fragment.HomeFragment
-import com.example.tiktokdownloader.fragment.MyFileFragment
-import com.example.tiktokdownloader.fragment.TrendingFragment
+import com.example.tiktokdownloader.adapters.ViewPageAdapter
+import com.example.tiktokdownloader.fragments.ExploreFragment
+import com.example.tiktokdownloader.fragments.HomeFragment
+import com.example.tiktokdownloader.fragments.MyFileFragment
+import com.example.tiktokdownloader.fragments.TrendingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

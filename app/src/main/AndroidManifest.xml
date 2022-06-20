@@ -30,7 +30,8 @@
             </intent-filter>
 
         </activity>
-        <receiver android:name=".fragment.HomeFragment$MyBroadcastReceiver"  android:exported="true">
+        <receiver android:name=".fragments.HomeFragment$MyBroadcastReceiver"  android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
             </intent-filter>
