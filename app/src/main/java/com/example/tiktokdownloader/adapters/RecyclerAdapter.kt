@@ -22,6 +22,7 @@ import com.example.tiktokdownloader.R
 import com.example.tiktokdownloader.models.VideoModel
 import com.example.tiktokdownloader.utils.RecyclerViewClickInterface
 import com.example.tiktokdownloader.utils.Util
+import java.lang.NullPointerException
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -98,6 +99,7 @@ class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerVie
             recyclerViewClick.onLongItemClick(position)
             return@setOnLongClickListener true
         }
+        holder.bind()
 
     }
 
@@ -129,12 +131,13 @@ class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerVie
             checkBox = itemView.findViewById(R.id.checkBox)
         }
 
-        fun hideBottomBar(){
-            checkBox.visibility = View.GONE
+        fun bind(){
+            if(checkBox.isChecked){
+                checkBox.isChecked = false
+            }
         }
-
-
-
     }
+
+
 
 }

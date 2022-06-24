@@ -20,6 +20,8 @@ import com.example.tiktokdownloader.utils.RecyclerViewClickInterface
 import com.example.tiktokdownloader.utils.Util
 import kotlinx.android.synthetic.main.bottom_options_bar.*
 import kotlinx.android.synthetic.main.fragment_my_file.*
+import kotlinx.android.synthetic.main.recyclerview_item2.*
+import okhttp3.internal.notifyAll
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,17 +80,18 @@ class MyFileFragment : Fragment(), RecyclerViewClickInterface {
             }
         }
 
-        recyclerAdapter.notifyDataSetChanged()
-
-
-
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onItemClick(position: Int) {
 
     }
+
+
 
     override fun onLongItemClick(position: Int) {
         Toast.makeText(context,"Long click",Toast.LENGTH_LONG).show()
@@ -100,6 +103,7 @@ class MyFileFragment : Fragment(), RecyclerViewClickInterface {
 
         imgCancel.setOnClickListener{
             bottom_options.visibility = View.GONE
+
         }
     }
 
