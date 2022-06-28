@@ -17,4 +17,7 @@ data class VideoModel(
     var unique_id:String,
     var file_name: String,
     val option: String,
-    var date :Long)
+    var date :Long,
+    var status: String,
+    var percent: Int
+)

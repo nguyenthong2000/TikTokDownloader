@@ -12,15 +12,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.tiktokdownloader.models.TikTokModel
 import com.example.tiktokdownloader.models.VideoModel
 import com.example.tiktokdownloader.R
 import com.example.tiktokdownloader.api.APIService
 import com.example.tiktokdownloader.utils.SendData
+import com.example.tiktokdownloader.viewmodels.MyFileViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.coroutines.*
 import retrofit2.*
 import java.io.*
 import java.util.*
@@ -38,6 +41,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment() : Fragment() {
     val TAG = "HomeFrag"
+    private val myFileViewModel:MyFileViewModel by activityViewModels()
 
     lateinit var downloadManager: DownloadManager
     lateinit var sendData: SendData
@@ -92,12 +96,6 @@ class HomeFragment() : Fragment() {
                         Log.e(TAG, tiktokModel.aweme_detail.desc)
 
                         Glide.with(activity!!.applicationContext).load(tiktokModel.aweme_detail.video.origin_cover.url_list[0]).override(60,80).into(thumbnail)
-
-//                        Picasso.get()
-//                            .load(tiktokModel.aweme_detail.video.origin_cover.url_list[0])
-//                            .centerCrop()
-//                            .resize(60, 80)
-//                            .into(thumbnail)
                         tv_video_name.text = tiktokModel.aweme_detail.desc
                         tv_author_name.text = tiktokModel.aweme_detail.author.unique_id
 
@@ -134,9 +132,13 @@ class HomeFragment() : Fragment() {
                 tiktokModel.aweme_detail.author.unique_id,
                 "",
                 "No Watermark",
+                0,
+                "",
                 0
+
             )
             sendData.receiverMessage(video)
+
         }
 
 
@@ -145,6 +147,7 @@ class HomeFragment() : Fragment() {
     }
 
 
+    @OptIn(InternalCoroutinesApi::class)
     fun downloadFromURL(url: String) {
         val request = DownloadManager.Request(Uri.parse(url))
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
@@ -154,7 +157,9 @@ class HomeFragment() : Fragment() {
             System.currentTimeMillis().toString()
         )
         downloadManager = activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        downloadManager.enqueue(request)
+
+        val id = downloadManager.enqueue(request)
+        context?.let { myFileViewModel.progress(it, id) }
     }
 
 
@@ -178,4 +183,6 @@ class HomeFragment() : Fragment() {
         super.onDestroy()
 //        context?.let { LocalBroadcastManager.getInstance(it).unregisterReceiver(br) }
     }
+
+
 }

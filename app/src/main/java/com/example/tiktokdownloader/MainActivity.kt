@@ -6,10 +6,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.database.Cursor
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
 import com.example.tiktokdownloader.adapters.ViewPageAdapter
@@ -18,6 +23,7 @@ import com.example.tiktokdownloader.database.VideoDatabase
 import com.example.tiktokdownloader.models.VideoModel
 import com.example.tiktokdownloader.utils.GetRealPath
 import com.example.tiktokdownloader.utils.SendData
+import com.example.tiktokdownloader.viewmodels.MyFileViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.File
 import kotlin.collections.ArrayList
@@ -25,6 +31,7 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), SendData {
     private val TAG:String="MainActivity"
+    private val myFileViewModel :MyFileViewModel by viewModels()
     lateinit var viewpage: ViewPager2
     lateinit var bottom_nav : BottomNavigationView
     lateinit var db: VideoDatabase
@@ -33,10 +40,11 @@ class MainActivity : AppCompatActivity(), SendData {
     var listVideo: MutableList<VideoModel> =ArrayList<VideoModel>()
 
     private val broad = object : BroadcastReceiver(){
-        @SuppressLint("SimpleDateFormat")
+        @SuppressLint("SimpleDateFormat", "Range")
         override fun onReceive(p0: Context?, p1: Intent?) {
             Log.e("Broad","Start")
             val getRealPath = GetRealPath()
+
             if(p1?.action == DownloadManager.ACTION_DOWNLOAD_COMPLETE){
 
                 p1.extras?.let {
@@ -45,8 +53,6 @@ class MainActivity : AppCompatActivity(), SendData {
                         val downloadManager = p0?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
                         val uri: Uri = downloadManager.getUriForDownloadedFile(downloadFileId)
                         val mineType: String? =  downloadManager.getMimeTypeForDownloadedFile(downloadFileId)
-
-
                         val path: String? = getRealPath.getRealPath(p0,uri)
 
                         val file : File = File(path)
@@ -58,26 +64,27 @@ class MainActivity : AppCompatActivity(), SendData {
                             listVideo[0].uri = path
                             listVideo[0].file_name = getFileName(path,mineType)
                             listVideo[0].date = file.lastModified()
+                            listVideo[0].status = "SUCCESSFUL"
+                            listVideo[0].percent = 100
                         }
 
                         videoDAO.insertVideo(listVideo[0])
+                        myFileViewModel.addVideo(listVideo[0])
                         listVideo.clear()
-
-
 
                         val videos: List<VideoModel> = videoDAO.selectAll()
                         for (video in videos){
                             Log.e("Main", video.uri)
                         }
-
                     }catch (e: Exception){
                         Log.e("Broad",e.message.toString())
+                        Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show()
                     }
-
                 }
             }
 
         }
+
     }
 
 
@@ -85,8 +92,6 @@ class MainActivity : AppCompatActivity(), SendData {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
-
-
 
 
         viewpage = findViewById(R.id.viewpage)
@@ -140,7 +145,11 @@ class MainActivity : AppCompatActivity(), SendData {
 
     override fun onStart() {
         super.onStart()
-        registerReceiver(broad, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        var intentFilter : IntentFilter = IntentFilter()
+        intentFilter.addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+        intentFilter.addAction(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR)
+        intentFilter.addAction(DownloadManager.ACTION_NOTIFICATION_CLICKED)
+        registerReceiver(broad, intentFilter)
     }
 
     override fun onDestroy() {

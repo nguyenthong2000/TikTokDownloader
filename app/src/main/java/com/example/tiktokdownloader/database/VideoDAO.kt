@@ -14,7 +14,11 @@ interface VideoDAO {
     @Delete
     fun deleteVideo(video: VideoModel)
 
-    @Query("SELECT * FROM videomodel")
-    fun selectAll():List<VideoModel>
+    @Query("SELECT * FROM videomodel ORDER BY date DESC")
+    fun selectAll(): List<VideoModel>
+
+    @Query("SELECT * FROM videomodel ORDER BY date DESC limit 1")
+    fun selectTop1(): List<VideoModel>
+
 
 }

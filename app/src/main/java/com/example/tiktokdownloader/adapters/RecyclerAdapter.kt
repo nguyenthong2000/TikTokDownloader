@@ -8,10 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.VideoView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -22,6 +19,11 @@ import com.example.tiktokdownloader.R
 import com.example.tiktokdownloader.models.VideoModel
 import com.example.tiktokdownloader.utils.RecyclerViewClickInterface
 import com.example.tiktokdownloader.utils.Util
+import com.example.tiktokdownloader.viewmodels.MyFileViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.DisposableHandle
+import kotlinx.coroutines.async
 import java.lang.NullPointerException
 import java.time.Instant
 import java.time.LocalDate
@@ -29,8 +31,13 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerViewClickInterface: RecyclerViewClickInterface) :
+class RecyclerAdapter(
+    listVideoModel: List<VideoModel>,
+    ct: Context,
+    recyclerViewClickInterface: RecyclerViewClickInterface
+) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+
 
     lateinit var listVideo: List<VideoModel>
     lateinit var context: Context
@@ -43,6 +50,10 @@ class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerVie
         listVideo = listVideoModel
         context = ct
         recyclerViewClick = recyclerViewClickInterface
+    }
+
+    fun setList(data: ArrayList<VideoModel>){
+        listVideo = data
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -90,8 +101,21 @@ class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerVie
         holder.tv_filename.text = "File: ${videoModel.file_name}"
         holder.tv_option.text = videoModel.option
 
-        Glide.with(context).load(videoModel.thumbnail_url).override(84,110).
-        apply(RequestOptions().transform(CenterCrop()).transform(RoundedCorners(4)))
+        if (videoModel.status == "RUNNING"){
+            val scope = CoroutineScope(Dispatchers.IO)
+            scope.async {
+
+            }
+        }else{
+            holder.tv_status.visibility = View.GONE
+            holder.tv_percent.visibility = View.GONE
+            holder.tv_speed.visibility = View.GONE
+            holder.progressBar.visibility = View.GONE
+        }
+
+
+        Glide.with(context).load(videoModel.thumbnail_url).override(84, 110)
+            .apply(RequestOptions().transform(CenterCrop()).transform(RoundedCorners(4)))
             .into(holder.imageViewThumb)
 
         holder.itemView.setOnLongClickListener {
@@ -99,7 +123,7 @@ class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerVie
             recyclerViewClick.onLongItemClick(position)
             return@setOnLongClickListener true
         }
-        holder.bind()
+
 
     }
 
@@ -120,6 +144,11 @@ class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerVie
         lateinit var tv_option: TextView
         lateinit var imageViewThumb: ImageView
         lateinit var checkBox: CheckBox
+        lateinit var tv_status: TextView
+        lateinit var tv_percent: TextView
+        lateinit var tv_speed: TextView
+        lateinit var progressBar: ProgressBar
+
 
         init {
             tv_time = itemView.findViewById(R.id.tv_time)
@@ -129,15 +158,18 @@ class RecyclerAdapter(listVideoModel: List<VideoModel>, ct: Context, recyclerVie
             tv_option = itemView.findViewById(R.id.tv_option)
             imageViewThumb = itemView.findViewById(R.id.imageViewThumb)
             checkBox = itemView.findViewById(R.id.checkBox)
+            tv_status =itemView.findViewById(R.id.tv_status)
+            tv_percent =itemView.findViewById(R.id.tv_percent)
+            tv_speed =itemView.findViewById(R.id.tv_speed)
+            progressBar =itemView.findViewById(R.id.progressBar)
         }
 
-        fun bind(){
-            if(checkBox.isChecked){
+        fun bind(videoModel: VideoModel) {
+            if (checkBox.isChecked) {
                 checkBox.isChecked = false
             }
         }
     }
-
 
 
 }
