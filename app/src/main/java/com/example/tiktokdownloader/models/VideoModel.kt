@@ -7,7 +7,7 @@ import java.util.*
 
 @Entity
 data class VideoModel(
-    @PrimaryKey(autoGenerate = true) val id:Int,
+    @PrimaryKey val id:Long,
     var original_url: String,
     var uri:String,
     var video_url: String,
@@ -18,6 +18,6 @@ data class VideoModel(
     var file_name: String,
     val option: String,
     var date :Long,
-    var status: String,
+    var status: Int,
     var percent: Int
 )

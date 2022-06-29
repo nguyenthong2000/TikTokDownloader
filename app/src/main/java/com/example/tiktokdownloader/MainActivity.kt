@@ -48,8 +48,9 @@ class MainActivity : AppCompatActivity(), SendData {
             if(p1?.action == DownloadManager.ACTION_DOWNLOAD_COMPLETE){
 
                 p1.extras?.let {
+                    val downloadFileId = it.getLong(DownloadManager.EXTRA_DOWNLOAD_ID)
                     try {
-                        val downloadFileId = it.getLong(DownloadManager.EXTRA_DOWNLOAD_ID)
+
                         val downloadManager = p0?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
                         val uri: Uri = downloadManager.getUriForDownloadedFile(downloadFileId)
                         val mineType: String? =  downloadManager.getMimeTypeForDownloadedFile(downloadFileId)
@@ -64,12 +65,17 @@ class MainActivity : AppCompatActivity(), SendData {
                             listVideo[0].uri = path
                             listVideo[0].file_name = getFileName(path,mineType)
                             listVideo[0].date = file.lastModified()
-                            listVideo[0].status = "SUCCESSFUL"
+                            listVideo[0].status = DownloadManager.STATUS_SUCCESSFUL
                             listVideo[0].percent = 100
+
+                            videoDAO.updateUriVideo(downloadFileId,path)
+                            videoDAO.updateFileNametVideo(downloadFileId,getFileName(path,mineType))
+                            videoDAO.updateDateVideo(downloadFileId,file.lastModified())
+                            myFileViewModel.updateVideo(downloadFileId,listVideo[0].status,listVideo[0].percent)
                         }
 
-                        videoDAO.insertVideo(listVideo[0])
-                        myFileViewModel.addVideo(listVideo[0])
+                        //videoDAO.insertVideo(listVideo[0])
+                        //myFileViewModel.getAllVideos()
                         listVideo.clear()
 
                         val videos: List<VideoModel> = videoDAO.selectAll()
@@ -78,6 +84,8 @@ class MainActivity : AppCompatActivity(), SendData {
                         }
                     }catch (e: Exception){
                         Log.e("Broad",e.message.toString())
+                        videoDAO.updateStatusVideo(downloadFileId,DownloadManager.STATUS_FAILED)
+                        myFileViewModel.getAllVideos()
                         Toast.makeText(applicationContext, "Failed", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -102,6 +110,7 @@ class MainActivity : AppCompatActivity(), SendData {
             VideoDatabase::class.java,
             "video.db"
         ).allowMainThreadQueries().build()
+
         videoDAO = db.videoDAO()
 
 

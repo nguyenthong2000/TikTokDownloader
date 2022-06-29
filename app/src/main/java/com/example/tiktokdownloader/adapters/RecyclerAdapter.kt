@@ -1,6 +1,7 @@
 package com.example.tiktokdownloader.adapters
 
 import android.annotation.SuppressLint
+import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import android.os.Build
@@ -20,10 +21,7 @@ import com.example.tiktokdownloader.models.VideoModel
 import com.example.tiktokdownloader.utils.RecyclerViewClickInterface
 import com.example.tiktokdownloader.utils.Util
 import com.example.tiktokdownloader.viewmodels.MyFileViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
 import java.lang.NullPointerException
 import java.time.Instant
 import java.time.LocalDate
@@ -52,7 +50,7 @@ class RecyclerAdapter(
         recyclerViewClick = recyclerViewClickInterface
     }
 
-    fun setList(data: ArrayList<VideoModel>){
+    fun setList(data: ArrayList<VideoModel>) {
         listVideo = data
     }
 
@@ -101,16 +99,24 @@ class RecyclerAdapter(
         holder.tv_filename.text = "File: ${videoModel.file_name}"
         holder.tv_option.text = videoModel.option
 
-        if (videoModel.status == "RUNNING"){
-            val scope = CoroutineScope(Dispatchers.IO)
-            scope.async {
+        when (videoModel.status) {
+            DownloadManager.STATUS_PENDING -> holder.tv_status.text = "Pending..."
+            DownloadManager.STATUS_RUNNING -> {
+                holder.tv_status.text = "Downloading..."
+                val scope = CoroutineScope(Dispatchers.Main)
 
+                scope.launch {
+                    holder.progressBar.progress = videoModel.percent
+                }
             }
-        }else{
-            holder.tv_status.visibility = View.GONE
-            holder.tv_percent.visibility = View.GONE
-            holder.tv_speed.visibility = View.GONE
-            holder.progressBar.visibility = View.GONE
+            DownloadManager.STATUS_FAILED -> holder.tv_status.text = "Failed"
+            DownloadManager.STATUS_PAUSED -> holder.tv_status.text = "Pause"
+            DownloadManager.STATUS_SUCCESSFUL -> {
+                holder.tv_status.visibility = View.GONE
+                holder.tv_percent.visibility = View.GONE
+                holder.tv_speed.visibility = View.GONE
+                holder.progressBar.visibility = View.GONE
+            }
         }
 
 
@@ -158,16 +164,14 @@ class RecyclerAdapter(
             tv_option = itemView.findViewById(R.id.tv_option)
             imageViewThumb = itemView.findViewById(R.id.imageViewThumb)
             checkBox = itemView.findViewById(R.id.checkBox)
-            tv_status =itemView.findViewById(R.id.tv_status)
-            tv_percent =itemView.findViewById(R.id.tv_percent)
-            tv_speed =itemView.findViewById(R.id.tv_speed)
-            progressBar =itemView.findViewById(R.id.progressBar)
+            tv_status = itemView.findViewById(R.id.tv_status)
+            tv_percent = itemView.findViewById(R.id.tv_percent)
+            tv_speed = itemView.findViewById(R.id.tv_speed)
+            progressBar = itemView.findViewById(R.id.progressBar)
         }
 
         fun bind(videoModel: VideoModel) {
-            if (checkBox.isChecked) {
-                checkBox.isChecked = false
-            }
+
         }
     }
 
